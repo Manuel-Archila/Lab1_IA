@@ -1,4 +1,5 @@
 import struct 
+from Color import color
 
 def char(c):# 1 bytes
     return struct.pack('=c',c.encode('ascii'))
@@ -9,7 +10,7 @@ def word(w):# 2 bytes
 def dword(d):# 4 bytes
     return struct.pack('=l',d)
 
-def write(self, filename):
+def write(self, filename, framebuffer):
         f = open(filename, 'bw')
         
         #pixel header
@@ -37,7 +38,21 @@ def write(self, filename):
         for y in range(self.height):
             for x in range(self.width):
                 #print(y, x)
-                f.write(self.framebuffer[y][x])
+                number = framebuffer[y][x]
+
+                if number == 0:
+                    f.write(color(0,0,0))
+
+                if number == 1:
+                    f.write(color(255,255,255))
+
+                if number == 2:
+                    f.write(color(255,0,0))
+
+                if number == 3:
+                    f.write(color(255,0,0))
+
+
         f.close()
 
 def get_color_with_intensity(self, tx, ty, intensity):
