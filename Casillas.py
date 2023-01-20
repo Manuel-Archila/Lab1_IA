@@ -5,5 +5,5 @@ class Casilla():
         self.VecinoAbajo=None
         self.VecinoDerecha=None
         self.VecinoIzquierda=None
-        
+        self.Padre = None
         self.color=color

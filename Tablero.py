@@ -28,13 +28,20 @@ class Tablero():
                     if self.matriz[y-1][x] == 1:
                         self.MatrizNodes[y][x].VecinoArriba = self.MatrizNodes[y-1][x]
                         self.Grafo.add_edge(self.MatrizNodes[y][x],self.MatrizNodes[y-1][x])
+                        self.MatrizNodes[y-1][x].Padre = self.MatrizNodes[y][x]
+                        
                     if self.matriz[y+1][x] == 1:
                         self.MatrizNodes[y][x].VecinoAbajo = self.MatrizNodes[y+1][x]
                         self.Grafo.add_edge(self.MatrizNodes[y][x],self.MatrizNodes[y+1][x])
+                        self.MatrizNodes[y+1][x].Padre = self.MatrizNodes[y][x]
+                        
                     if self.matriz[y][x-1] == 1:
                         self.MatrizNodes[y][x].VecinoIzquierda = self.MatrizNodes[y][x-1]
                         self.Grafo.add_edge(self.MatrizNodes[y][x],self.MatrizNodes[y][x-1])
+                        self.MatrizNodes[y][x-1].Padre = self.MatrizNodes[y][x]
+                        
                     if self.matriz[y][x+1] == 1:
                         self.MatrizNodes[y][x].VecinoDerecha = self.MatrizNodes[y][x+1]
                         self.Grafo.add_edge(self.MatrizNodes[y][x],self.MatrizNodes[y][x+1])
+                        self.MatrizNodes[y][x+1].Padre = self.MatrizNodes[y][x]
         
