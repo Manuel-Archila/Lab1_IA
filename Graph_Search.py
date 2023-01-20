@@ -22,4 +22,4 @@ class Graph_Search(ABC):
         return self.visited
 
     def get_frontier(self):
-        return self.frontier
+        return self.frontier  
