@@ -27,9 +27,18 @@ def discretizacion(matrizdiscrete):
                     except:
                         pass
                         #print(columna,fila)
-            if contador[2] != 0 and bandera:
+            if contador[2] >= 150 and bandera:
                 sectores[i].append(2)
                 bandera = False
+            elif contador[3]>=175:
+                try:
+                    if sectores[i][j-1]!=3 and sectores[i-1][j]!=3:
+                        sectores[i].append(3)
+                    else:
+                        sectores[i].append(1)
+                except:
+                    sectores[i].append(1)
+                    
             elif contador[0]>contador[1]:
                 sectores[i].append(0)
             elif contador[0]==contador[1]:
@@ -37,8 +46,9 @@ def discretizacion(matrizdiscrete):
             else:
                 sectores[i].append(1)
             contador = [0,0,0,0]
- 
-
+    
+    VerMatriz(sectores)
+    
     for i in range(0,veces):
             for j in range(0, veces):
                 for columna in range(i*proporcion,i*proporcion+proporcion):
@@ -58,15 +68,15 @@ def discretizacion(matrizdiscrete):
                             pass
 
     return matrizdiscrete
+
+
 # reading:
-img = iio.imread("./Test.bmp")
+img = iio.imread("./Test1.bmp")
 
 #''''''
 
 bin = np.zeros((len(img), len(img[0])), dtype=np.uint8)
 
-print(type(img[0][0]))
-print(type(img[0][0][0]))
 
 for i in range(len(img)):
     for j in range(len(img)):
@@ -110,10 +120,6 @@ for i in range(len(penultima)):
             ultima[i][j] = rojo
         elif penultima[i][j]==3:
             ultima[i][j] = verde
-
-
-print(len(ultima))
-#VerMatriz(ultima)    
 
 
 # writing:
