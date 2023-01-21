@@ -1,13 +1,15 @@
 from Casillas import Casilla
 import networkx as nx
+from Casillas import Casilla
+
 class Tablero():
     def __init__(self,matriz):
         self.Grafo = nx.Graph()
         self.matriz = matriz
         self.length = len(matriz)
         self.inicio = None
-        self.MatrizNodes=[[None for x in range(0,len(self.length))]
-                                for y in range(0,len(self.length))]	
+        self.MatrizNodes=[[0 for x in range(0,self.length)]
+                                for y in range(0,self.length)]	
         
     def create_Nodos(self):
         
