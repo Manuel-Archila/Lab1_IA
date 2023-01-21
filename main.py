@@ -1,6 +1,7 @@
 from Reader import Reader
 from Writer import Writer
 from Tablero import Tablero
+from BFS import BFS
 
 
 
@@ -13,9 +14,9 @@ if __name__ == '__main__':
 
     tablero.create_Nodos()
 
-    print(tablero.Grafo.nodes)
+    bfs = BFS(tablero.Grafo, tablero.inicio, tablero.goal)
 
+    
     Writer("New_Map.bmp", matrix, img)
-
     
     

@@ -7,3 +7,9 @@ class Casilla():
         self.VecinoIzquierda=None
         self.Padre = None
         self.color=color
+    
+    def __repr__(self):
+        return (str(self.color))
+
+    def color(self):
+        return self.color
