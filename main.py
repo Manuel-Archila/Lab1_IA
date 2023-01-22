@@ -8,7 +8,7 @@ from DFS import DFS
 
 if __name__ == '__main__':
     reader = Reader()
-    binary, img = reader.read('./Test3.bmp')
+    binary, img = reader.read('./Test1.bmp')
     matrix = reader.discretizacion(img, binary)
 
     tablero = Tablero(matrix)
