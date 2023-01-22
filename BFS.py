@@ -50,7 +50,7 @@ class BFS(Graph_Search):
             cost += self.step_cost(path[i], path[i+1])
         return cost
     
-    def deep_first(self):
+    def breadth_first(self):
         visited_nodes=[]
         queue = Queue()
         queue.enqueue(self.start)

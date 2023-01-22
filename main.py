@@ -2,12 +2,13 @@ from Reader import Reader
 from Writer import Writer
 from Tablero import Tablero
 from BFS import BFS
+from DFS import DFS
 
 
 
 if __name__ == '__main__':
     reader = Reader()
-    binary, img = reader.read('./Test1.bmp')
+    binary, img = reader.read('./Test3.bmp')
     matrix = reader.discretizacion(img, binary)
 
     tablero = Tablero(matrix)
@@ -21,8 +22,10 @@ if __name__ == '__main__':
         nodof = (bfs.breadth_first()).Padre
         
     elif opcion == "2":
-        dfs = BFS(tablero.Grafo, tablero.inicio, tablero.goal)
-        nodof = (dfs.deep_first()).Padre
+        dfs = DFS(tablero.Grafo, tablero.inicio, tablero.goal)
+        visited = []
+        nodof = (dfs.deep_first(tablero.inicio, visited)).Padre
+        #nodof = (dfs.dfs()).Padre
         
     
     Writer("Normal_Map.bmp", matrix, img)

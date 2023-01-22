@@ -37,7 +37,7 @@ class Tablero():
                 if self.matriz[y][x] == 1 or self.matriz[y][x] == 2 or self.matriz[y][x] == 3:
 
                     try:
-                        if self.matriz[y-1][x] == 1 or self.matriz[y-1][x] == 3:
+                        if self.matriz[y-1][x] == 1 and y != 0 or self.matriz[y-1][x] == 3:
                             self.MatrizNodes[y][x].VecinoArriba = self.MatrizNodes[y-1][x]
                             self.Grafo.add_edge(self.MatrizNodes[y][x],self.MatrizNodes[y-1][x])
                             
@@ -53,7 +53,7 @@ class Tablero():
                         pass
                     
                     try:
-                        if self.matriz[y][x-1] == 1 or self.matriz[y][x-1] == 3:
+                        if self.matriz[y][x-1] == 1 and x !=0 or self.matriz[y][x-1] == 3:
                             self.MatrizNodes[y][x].VecinoIzquierda = self.MatrizNodes[y][x-1]
                             self.Grafo.add_edge(self.MatrizNodes[y][x],self.MatrizNodes[y][x-1])
                             

@@ -4,6 +4,7 @@ from Graph_Search import Graph_Search
 class DFS(Graph_Search):
     def __init__(self, graph, start, goal):
         super().__init__(graph, start, goal)
+        self.final = None
 
     
     def actions(self, state):
@@ -27,18 +28,30 @@ class DFS(Graph_Search):
         for i in range(len(path)-1):
             cost += self.step_cost(path[i], path[i+1])
         return cost
+
     
-    def dfs(self, start, visited_nodes=[]):
+    def deep_first(self, start, visited_nodes=[]):
         visited_nodes.append(start)
         current_node = start
-        
-        
+
         if self.goalTest(current_node):
-            return True
-     
-        childrens = self.actions(current_node)
+            self.final = current_node
+            return self.final
             
-        for child in childrens:
-            if child and not (child in visited_nodes):                    
-                self.dfs(child, visited_nodes)
+        else:
+            childrens = self.actions(current_node)
+            if self.final is None:
+                for child in childrens:
+                    if child and not (child in visited_nodes):
+                        self.result(current_node, child)                    
+                        self.deep_first(child, visited_nodes)
+
+        return self.final
+
+
+
+
+        
+
+                
             
