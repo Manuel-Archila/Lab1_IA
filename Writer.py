@@ -21,6 +21,8 @@ class Writer(object):
         blanco = np.array([255,255,255], dtype=np.uint8)
         rojo = np.array([255,0,0], dtype=np.uint8)
         verde = np.array([0,255,0], dtype=np.uint8)
+        morado = np.array([255,0,255], dtype=np.uint8)
+        
 
 
 
@@ -34,6 +36,8 @@ class Writer(object):
                     Dibujo[i][j] = rojo
                 elif base_matrix[i][j]==3:
                     Dibujo[i][j] = verde
+                elif base_matrix[i][j]==4:
+                    Dibujo[i][j] = morado
 
 
 
@@ -64,6 +68,9 @@ class Writer(object):
                                     
                                 elif sectores[i][j] == 3:
                                     matrizdiscrete[columna][fila]=3
+                                    
+                                elif sectores[i][j] == 4:
+                                    matrizdiscrete[columna][fila]=4
                             except:
                                 pass
         return matrizdiscrete

@@ -11,31 +11,25 @@ class Graph_Search(ABC):
         self.frontier.append(start)
         self.visited.append(start)
 
+    
+
     @abstractmethod
-    def search(self):
-        pass
-
-    def get_path(self):
-        return self.path
-
-    def get_visited(self):
-        return self.visited
-
-    def get_frontier(self):
-        return self.frontier  
-
     def actions(self, state):
         return self.graph.get_actions(state)
     
+    @abstractmethod
     def result(self, state, action):
         return self.graph.get_result(state, action)
 
+    @abstractmethod
     def goalTest(self, state):
         return state == self.goal
 
+    @abstractmethod
     def step_cost(self, state, action, state2):
         return self.graph.get_step_cost(state, action)
 
+    @abstractmethod
     def path_cost(self, path):
         cost = 0
         for i in range(len(path)-1):

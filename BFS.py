@@ -26,22 +26,52 @@ class BFS(Graph_Search):
     def __init__(self, graph, start, goal):
         super().__init__(graph, start, goal)
 
-    def breadth_first(graph, root):
+    
+    
+    def actions(self, state):
+        return state.Movments()
+    
+    
+    def result(self, state, action):
+        action.Padre = state
 
+    
+    def goalTest(self, state):    
+        return state in self.goal
+
+    
+    def step_cost(self, state, action, state2):
+        return self.graph.get_step_cost(state, action)
+
+    
+    def path_cost(self, path):
+        cost = 0
+        for i in range(len(path)-1):
+            cost += self.step_cost(path[i], path[i+1])
+        return cost
+    
+    def breadth_first(self):
+        visited_nodes=[]
         queue = Queue()
         visited_nodes = list()
-        queue.enqueue(root)
-        visited_nodes.append(root)
-        current_node = root
+        queue.enqueue(self.start)
+        visited_nodes.append(self.start)
+        
+        current_node = self.goal[0]
         
         while queue.size > 0:
+        #for i in range(5):
+            
             current_node = queue.dequeue()
-            adj_nodes = graph[current_node]
-            remaining_elements = sorted(set(adj_nodes) - set(visited_nodes))
-
-            if len(remaining_elements) > 0:
-                for element in remaining_elements:
-                    visited_nodes.append(element)
-                    queue.enqueue(element)
-        
-        return visited_nodes
+            childrens = self.actions(current_node)
+            
+            
+            if self.goalTest(current_node):
+                return current_node
+            
+            for child in childrens:
+                if child and not (child in visited_nodes):                    
+                    visited_nodes.append(child)
+                    queue.enqueue(child)
+                    self.result(current_node, child)
+            
