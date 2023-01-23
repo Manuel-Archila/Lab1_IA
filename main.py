@@ -3,12 +3,14 @@ from Writer import Writer
 from Tablero import Tablero
 from BFS import BFS
 from DFS import DFS
+from AStarUno import AStarUno
+
 
 
 
 if __name__ == '__main__':
     reader = Reader()
-    binary, img = reader.read('./Test1.bmp')
+    binary, img = reader.read('./Test2.bmp')
     matrix = reader.discretizacion(img, binary)
 
     tablero = Tablero(matrix)
@@ -25,7 +27,12 @@ if __name__ == '__main__':
         dfs = DFS(tablero.Grafo, tablero.inicio, tablero.goal)
         visited = []
         nodof = (dfs.deep_first(tablero.inicio, visited)).Padre
-        #nodof = (dfs.dfs()).Padre
+        
+    elif opcion == "3":
+        A = AStarUno(tablero.matriz, tablero.inicio, tablero.goal)
+        visited = []
+        nodof = (A.astar(tablero.inicio, visited)).Padre
+        
         
     
     Writer("Normal_Map.bmp", matrix, img)
