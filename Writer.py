@@ -7,6 +7,7 @@ class Writer(object):
         self.write(filename, sectores, img)
 
     def write(self, filename, sectores, img):
+        self.proporcion = int(len(img) / 23)
 
         base_matrix = self.agrandar(img, sectores)
 

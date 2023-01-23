@@ -13,9 +13,11 @@ class Reader(object):
             print(i)
 
     def discretizacion(self, img, binary_mat):
+        self.proporcion = int(len(img) / 23)
         veces = int(len(img) / self.proporcion)
         bandera = True
-            
+        color_rojo = self.proporcion * self.proporcion * 0.3
+        #print(color_rojo)  
         for i in range(0,veces):
             self.sectores.append([])
             for j in range(0, veces):
@@ -34,7 +36,7 @@ class Reader(object):
                         except:
                             pass
                             #print(columna,fila)
-                if contador[2] >= 150 and bandera:
+                if contador[2] >= color_rojo and bandera:
                     self.sectores[i].append(2)
                     bandera = False
                 elif contador[3]>=175:
